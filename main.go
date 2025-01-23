@@ -1,14 +1,17 @@
 package main
 
 import (
-	"github.com/gofiber/fiber/v2"
+    "log"
+    "github.com/gofiber/fiber/v2"
+    "github.com/konpwomi/go-postgresql-auth-crud/api/routes"
 )
 
-
 func main() {
-	app := fiber.New()
-	app.Get("/", func (c *fiber.Ctx) error  {
-		return c.SendString("Hello World")
-	})
-	app.Listen(":8080")
-} 
+    app := fiber.New()
+
+    // Register routes
+    routes.RegisterRoutes(app)
+
+    // Start server
+    log.Fatal(app.Listen(":8080"))
+}
